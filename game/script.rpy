@@ -1,8 +1,10 @@
 # Declare characters used by this game.
 define g = Character(_("A Voice"), color="c8ffc8")
 define m = Character(_("You"), color="#ffabe9")
+define l = Character(_("Layla"), color="#ffabe9")
 define v = Character(_("Val"), color="#cb59ff")
-define b = Character(_("Friend"), color="#ffbb6f")
+define f = Character(_("Friend"), color="#ffbb6f")
+define e = Character(_("Enemy"), color="#60bbff")
 python:
   from enum import Enum
 
@@ -14,7 +16,6 @@ python:
 
 # This is a variable that is True if you've compared a VN to a book, and False
 # otherwise.
-default book = False
 default tooWellKept = False
 default wellKept = False
 default wellKnown = False
@@ -22,6 +23,7 @@ default wellKnown = False
 default doneFriend = False
 default doneEnemy = False
 default doneSweet = False
+default doneEx = False
 
 default deadnameExplained = False
 
@@ -30,7 +32,11 @@ default relationshipSweetheart = 0
 default relationshipEx = -10
 default relationshipEnemy = -100
 
-$ outLength = howLong.MIDDLE
+default stillFriends = False
+
+default fellForTheEnemy = True
+
+default outLength = 3
 
 # The game starts here.
 label start:
@@ -73,7 +79,7 @@ label nameLayla:
 
   $wellKnown = True
 
-  "[Without hestiation, you gave your true name. Your secret must have been *Well Known*.]"
+  "[Without hestiation, you gave your true name. Your secret must have been {b}Well Known{/b}.]"
 
   jump given
 
@@ -89,7 +95,7 @@ label nameDavid:
 
   g "Don't worry about it. I understand. Your name is Layla."
 
-  "You weren't able to remember your true name. Your secret has been {b}Well Kept{/b} perhaps {b}Too Well Kept{/b}..."
+  "[You weren't able to remember your true name. Your secret has been {b}Well Kept{/b} perhaps {b}Too Well Kept{/b}...]"
 
   $wellKept = True
   $tooWellKept = True
@@ -105,7 +111,7 @@ label silence:
   m "It's... Layla."
 
   g "Thank you for being honest with me Layla. You have a very cute name."
-  "You hesitated before giving your true name. It was a {b}Well Kept{/b} secret."
+  "[You hesitated before giving your true name. It was a {b}Well Kept{/b} secret.]"
 
   $wellKept = True
 
@@ -125,22 +131,120 @@ m "Others?"
 
 g "You tell me."
 
+label stories:
+
+scene bg
+
+show you at left
+
 menu:
 
-  "What does she mean by others..."
+  "Who else..."
 
-  "My Best Friend":
+  "My Best Friend" if not doneFriend:
     jump friend
 
-  "My Sweetheart":
+  "My Sweetheart" if not doneSweet:
     jump sweet
 
-  "My worst enemy":
+  "My worst enemy" if wellKnown and not doneEnemy:
     jump enemy
+
+  "My Ex" if not doneEx:
+    jump ex
 
 label friend:
 
   m "Do you mean... my best friend?"
+
+  "Memories flood back into your mind of her. The way she laughed. Her smirk. The stupid shirt she wore all the time."
+
+  "As they flooded back, she appeared, next to you."
+
+  show friend at right
+
+  if not stillFriends:
+
+    m "Ahh... it's been so long... I wonder how she's doing."
+
+  g "Do you remember much about her?"
+
+  m "So much..."
+
+  if outLength  == 3:
+
+    m "But by far my best memory..."
+
+    f "{i}Layla!{/i} Welcome to my den!"
+
+    if not deadnameExplained:
+
+      "She wasn't supposed to say Layla, but right before she said your deadname, a loud record scratch played, and she said Layla instead."
+
+      m "Wait, that's not what she said."
+
+      g "That's how you think of it. Your memories are tinged by your feelings. That name is dead. It has no place here."
+
+      m "That... makes sense, I suppose."
+
+    l "H-Hi Gracie."
+
+    define f = Character(_("Gracie"), color="#ffbb6f")
+
+    f "So? What's up? You said you had something you wanted to talk about didn't you?"
+
+    "Gracie collapses onto a large bean bag that you remember from her room, which had suddenly appeared."
+
+    l "Ah, well... please don't be shocked, okay?"
+
+    f "I won't be shocked by anything you want to tell me! So, what is it?"
+
+    l "Well... the truth is... I'm pretty sure I'm a girl..."
+
+    "It takes a moment for Gracie to understand what you're saying, but when she does her eyes light up."
+
+    show friend at left
+    with move
+
+    "She grabs your hands excitedly, and your heart beat just a little faster."
+
+    f "That's amazing! Oh my god! I'm so happy you told me! Do you have a name figured out?"
+
+    l "Y-yeah, Layla..."
+
+    f "Holy shit that fits you so well! And it's so cute!"
+
+    f "Do our teachers know yet?"
+
+    l "N-no, you're the only person I've told, honestly..."
+
+    f "Hmm... do you have any clothes?"
+
+    l "No..."
+
+    show friend right
+    with move
+
+    f "I'm sure I can find something around here you'd look cute in! Hmm..."
+
+    "She fishes around in a cabinet and grabs a lacey purple dress."
+
+    f "Here! Try this!"
+
+    "You smile, and the world around you begins to return to the white void."
+
+    scene bg
+
+    show you at left
+
+
+
+
+
+
+$ doneFriend = True
+
+jump stories
 
 label sweet:
 
@@ -198,7 +302,9 @@ label sweet:
 
   v "Ah, I saw you in class didn't I? {i}Layla{/i} is it?"
 
-  if wellKept:
+  if wellKept and not deadnameExplained:
+
+    $ deadnameExplained = True
 
     "She didn't say Layla, you remember that. But as she begins to say your deadname, there\'s the sound of a record scratch, and instead she says Layla."
 
@@ -220,9 +326,9 @@ label sweet:
     "Val begins to reanimate."
 
   if wellKept:
-    m "Yeah, that's me. {i}Val{/i} right? What\'s up?"
+    l "Yeah, that's me. {i}Val{/i} right? What\'s up?"
   else:
-    m "Yeah, that's me. Val right? What\'s up?"
+    l "Yeah, that's me. Val right? What\'s up?"
 
   v "I was wondering if you could help me with..."
 
@@ -245,7 +351,7 @@ label sweet:
 
       v "...makeup. Sorry if this is weird but I noticed your eyeliner. I suck at eyeliner, honestly!"
 
-      m "Oh, sure thing. I'm not that though, honestly."
+      l "Oh, sure thing. I'm not that good though, honestly."
 
       menu:
 
@@ -256,23 +362,202 @@ label sweet:
           v "Oh really?"
 
           "You must {b}still be friends{/b} with your Best Friend."
+          $ relationshipFriend += 10
 
         "Thanks, I've had a lot of practice.":
 
           v "Ah, that's awesome!"
 
-          "You've {b}been out for a while{/b}."
+          "[You've {b}been out for a while{/b}.]"
 
           if outLength > howLong.MIDDLE:
             $ outLength = howLong.MIDDLE
 
+$ doneSweet = True
 
-
-
-
+jump stories
 
 label enemy:
 
+"You grimace."
+
+m "...Her."
+
+"Your voice is dripping with disgust. Before you remember anything concrete, a shade of blue - her shade of blue, appears around you, beginning to corrupt the pristine white void."
+
+scene bg corrupt
+
+"It forms itself into shapes - a bar. {i}She{/i} leaned close to you from the seat, her flaming blue hair impossible to mistake."
+
+show you at left
+
+show enemy at right
+
+e "Hey there cutie~"
+
+"Her voice was slick as oil, as she moved herself closer to you, she passed a glass of a bright blue liquid."
+
+e "Drink up, sweetheart. <3"
+
+m "NO."
+
+g "You're safe here."
+
+m "NO. I'm not reliving her."
+
+g "I'm sorry, but I can't stop it. I'm just an outside observer. This is all you."
+
+m "Please... please..."
+
+g "I'm sorry."
+
+l "S-sure, I'll take a sip."
+
+"Tenderly, you sip the glass, the glowing blue liquid burning its way down your throat."
+
+e "Aw, you're blushing. This your first time in a gay bar?"
+
+l "Yeah, haha. I just turned 21 this month, thought I'd celebrate."
+
+e "And? Anything else?"
+
+l "Eh?"
+
+$ notDoneLoop = True
+
+while notDoneLoop:
+  menu:
+
+    e "You here for anything more than celebrating sweetheart?"
+
+    "Flirt like an idiot":
+
+      l "Well, you know. {i}blush{/i} Maybe..."
+
+      e "Oh yea? Maybe what?"
+
+      $ notDoneLoop = False
+
+      l "Well... Maybe I'm here for you?"
+
+      e "Is that so?"
+
+      "She winks at you, making your heart skip uncontrollably. You feel a churning in your stomach."
+
+    "Try to get out":
+
+      m "I'm taken, actually."
+
+      g "..."
+
+      g "Is that really what happened?"
+
+      "Your attempt to force your way out of the situation fails, and before you know it everything rewinds..."
+
+    "NO":
+
+      m "NO. NO. NO. NO. NO."
+
+      g "..."
+
+      "Your attempt to force your way out of the situation fails, and before you know it everything rewinds..."
+
+l "My name's Layla... what's yours?"
+
+$ e = Character(_("Max"), color="#60bbff")
+
+e "It's Max. So, what do you study?"
+
+m "JUST GET IT OVER WITH."
+
+m "I KNOW WHAT YOU WANT TO SHOW ME. JUST. JUST. JUST... just get to that part..."
+
+"The surrondings shift to Max's bedroom. Everything is stained with the same repulsive blue. She lays on her bed, beckoning you over. You dutifully follow, after which she plants a kiss on your cheek."
+
+e "Soo cutie, how are you feeling?"
+
+l "Ah... I'm feeling... good..."
+
+e "Mmm, yeah?"
+
+scene bg blood
+
+"Her fangs bite into your neck, bright red blood spilling from it and painting the canvas of your surrondings."
+
+l "Yeah... haha."
+
+e "Well? Why don't you take off someone of your clothes then cutie?"
+
+l "Hehe... I'd be glad to..."
+
+"You begin to climb into her bed, slowly taking off your clothes, when-"
+
+e "EXCUSE ME."
+
+"Max pushes you off the bed, not playfully, but hard, paniced, you fall to the ground with a crash."
+
+e "GET THE HELL OUT OF MY ROOM."
+
+l "I-I, what are you-"
+
+e "You're fucking disgusting, whatever your real name is. How could you lie to me like that? Do you really want to bang a dyke that badly?"
+
+l "I don't und-"
+
+e "I {i}told{/i} you I'm a lesbian. Why didn't you give up and say you're a boy then? Just because you like wearing dresses doesn't make you a girl, pervert."
+
+l "What the fuck are you talking about..."
+
+e "NOW GET OUT OF MY FUCKING HOUSE."
+
+"Max moves to grab something from her bedside table. She fiddles with it for a moment, and then the shining blade of a pocket knife is pointed at you."
+
+l "I-I'm sorry, let me just grab my jacket and I'll leave I promise, I promise."
+
+"You reach up to grab your jacket from her bed, but before you can react, the knife stabs into your hand."
+
+scene bg blue blood
+
+"You scream out in pain, and blue and red blood mixes and shoots from the wound, covering your arm."
+
+e "GET THE FUCK AWAY FROM ME!! YOU FUCKING CREEP!! I'LL CALL THE FUCKING POLICE IF YOU DON'T GET OUT OF HERE RIGHT NOW."
+
+"You run, run as fast as you can, not worrying about the fact you had left your phone and keys in your jacket, running, running, running..."
+
+scene bg
+
+m "It's over..."
+
+m "Eventually one of my friends found me bleeding out... They called the hospital. I was fine... but..."
+
+g "I'm sorry."
+
+m "... who are you, why are you making me do this?"
+
+g "I'm not making you do anything Layla."
+
+m "Right..."
+
+g "Are there any others?"
+
+m "Happier memories... maybe."
+
+$ doneEnemy = True
+
+jump stories
+
+
+label ex:
+
+m "Oh... do you mean him? My first partner?"
+
+$ doneEx = True
+
+jump stories
+
+
+
+# Old
 
 # # Start by playing some music.
 # play music "illurock.opus"
