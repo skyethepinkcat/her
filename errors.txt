@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 188: is not terminated with a newline. (Check strings and parenthesis.)
-(Perhaps you left out a " at the end of the first line.)
-        l "
+File "game/script.rpy", line 176: if statement expects a non-empty block.
+    if outLength == 3:
+                      ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Sat Dec 12 15:34:32 2020
+Sat Dec 12 16:57:03 2020

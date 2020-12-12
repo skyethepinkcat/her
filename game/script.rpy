@@ -171,69 +171,106 @@ label friend:
 
   m "So much..."
 
-  if outLength  == 3:
+  if outLength == 2 or outLength == 3:
+
 
     m "But by far my best memory..."
 
-    f "{i}Layla!{/i} Welcome to my den!"
+    if outLength == 3:
 
-    if not deadnameExplained:
+      f "{i}Layla!{/i} Welcome to my den!"
 
-      "She wasn't supposed to say Layla, but right before she said your deadname, a loud record scratch played, and she said Layla instead."
+      if not deadnameExplained:
 
-      m "Wait, that's not what she said."
+        "She wasn't supposed to say Layla, but right before she said your deadname, a loud record scratch played, and she said Layla instead."
 
-      g "That's how you think of it. Your memories are tinged by your feelings. That name is dead. It has no place here."
+        m "Wait, that's not what she said."
 
-      m "That... makes sense, I suppose."
+        g "That's how you think of it. Your memories are tinged by your feelings. That name is dead. It has no place here."
 
-    l "H-Hi Gracie."
+        m "That... makes sense, I suppose."
 
-    define f = Character(_("Gracie"), color="#ffbb6f")
+      l "H-Hi Gracie."
 
-    f "So? What's up? You said you had something you wanted to talk about didn't you?"
+      define f = Character(_("Gracie"), color="#ffbb6f")
 
-    "Gracie collapses onto a large bean bag that you remember from her room, which had suddenly appeared."
+      f "So? What's up? You said you had something you wanted to talk about didn't you?"
 
-    l "Ah, well... please don't be shocked, okay?"
+      "Gracie collapses onto a large bean bag that you remember from her room, which had suddenly appeared."
 
-    f "I won't be shocked by anything you want to tell me! So, what is it?"
+      l "Ah, well... please don't be shocked, okay?"
 
-    l "Well... the truth is... I'm pretty sure I'm a girl..."
+      f "I won't be shocked by anything you want to tell me! So, what is it?"
 
-    "It takes a moment for Gracie to understand what you're saying, but when she does her eyes light up."
+      l "Well... the truth is... I'm pretty sure I'm a girl..."
 
-    show friend at left
-    with move
+      "It takes a moment for Gracie to understand what you're saying, but when she does her eyes light up."
 
-    "She grabs your hands excitedly, and your heart beat just a little faster."
+      show friend at left
+      with move
 
-    f "That's amazing! Oh my god! I'm so happy you told me! Do you have a name figured out?"
+      "She grabs your hands excitedly, and your heart beat just a little faster."
 
-    l "Y-yeah, Layla..."
+      f "That's amazing! Oh my god! I'm so happy you told me! Do you have a name figured out?"
 
-    f "Holy shit that fits you so well! And it's so cute!"
+      l "Y-yeah, Layla..."
 
-    f "Do our teachers know yet?"
+      f "Holy shit that fits you so well! And it's so cute!"
 
-    l "N-no, you're the only person I've told, honestly..."
+      f "Do our teachers know yet?"
 
-    f "Hmm... do you have any clothes?"
+      l "N-no, you're the only person I've told, honestly..."
 
-    l "No..."
+      f "Hmm... do you have any clothes?"
 
-    show friend right
-    with move
+      l "No..."
 
-    f "I'm sure I can find something around here you'd look cute in! Hmm..."
+      show friend at right
+      with move
 
-    "She fishes around in a cabinet and grabs a lacey purple dress."
+      f "I'm sure I can find something around here you'd look cute in! Hmm..."
 
-    f "Here! Try this!"
+      "She fishes around in a cabinet and grabs a lacey purple dress."
+
+      f "Here! Try this!"
+
+    else:
+
+      f "So! You needed help with maekup, right Layla?"
+
+      l "Yeah..."
+
+      f "Not a problem! Did you bring anything you wanted to try."
+
+      l "I bought this..."
+
+      "You hold up a bag full of makeup supplies that had appeared in your hand a moment ago."
+
+      show friend at left
+      with move
+
+      f "Awesome!"
+
+      "Her hands brush against yours as she grabs the bag, making you blush just a bit. Your eyes linger on her hands for a moment before returning to her face."
+
+      show friend at center
+      with move
+
+      f "Oooo I really like these colors..."
+
+      l "Thanks!"
+
+      f "Alright, just a moment..."
+
+      show friend at left
+      with move
+
+      f "Okayy, now hold still."
 
     "You smile, and the world around you begins to return to the white void."
 
     scene bg
+    with fade
 
     show you at left
 
