@@ -1,0 +1,259 @@
+Resetting cache.
+
+File "game/script.rpy", line 486: expected menuitem
+    show me at center
+    ^
+Resetting cache.
+Resetting cache.
+Resetting cache.
+
+Full traceback:
+  File "game/script.rpy", line 555, in script
+    with shake
+  File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/ast.py", line 1382, in execute
+    trans = renpy.python.py_eval(self.expr)
+  File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/python.py", line 2059, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/python.py", line 2052, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/script.rpy", line 555, in <module>
+    with shake
+NameError: name 'shake' is not defined
+
+While running game code:
+  File "game/script.rpy", line 555, in script
+    with shake
+  File "game/script.rpy", line 555, in <module>
+    with shake
+NameError: name 'shake' is not defined
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+
+File "game/script.rpy", line 614: expected statement.
+(Perhaps you left out a " at the end of the first line.)
+    but before you can react, the knife stabs into your hand."
+                            ^
+    
+    scene bg blue blood
+    with vpunch
+    
+    "You scream out in pain, and blue and red blood mixes and shoots from the wound, covering your arm."
+    
+    e "GET THE FUCK AWAY FROM ME!! YOU FUCKING CREEP!! I'LL CALL THE FUCKING POLICE IF YOU DON'T GET OUT OF HERE RIGHT NOW."
+    
+    "You run, run as fast as you can, not worrying about the fact you had left your phone and keys in your jacket, running, running, running..."
+    
+    scene bg
+    
+    m "It's over..."
+    
+    m "Eventually one of my friends found me bleeding out... They called the hospital. I was fine... but..."
+    
+    g "I'm sorry."
+    
+    m "... who are you, why are you making me do this?"
+    
+    g "I'm not making you do anything Layla."
+    
+    m "Right..."
+    
+    g "Are there any others?"
+    
+    m "Happier memories... maybe."
+    
+    $ doneEnemy = True
+    
+    jump stories
+    
+    
+    label ex:
+    
+    show you at center
+    
+    m "Oh... do you mean him? My first partner?"
+    
+    m "He was... nice, I suppose."
+    
+    g "You suppose?"
+    
+    m "Well... there was nothing... wrong with him..."
+    
+    "Stone pillars erect around you, turning into walls not a foot away from you. A couch forms under you, and you fall onto it, where a boy wraps his arms around you."
+    
+    x "You're so cute Layla..."
+    
+    l "Nooo!"
+    
+    x "Yes you arrre."
+    
+    "He pecks you on your cheek. You try to ignore the sandpaper of his facial hair pressing against you."
+    
+    l "I... love you."
+    
+    x "What's with the hesitation?"
+    
+    "You close your eyes and think for a moment. The words you want to say feel tangled, they don't want to leave your throat."
+    
+    l "I suppose... Maybe I just don't understand love... Like, I don't think I'd give anything for you or anything like that... I suppose.When I say it... I just mean I like being with you, and I wanna stay with you, you know?"
+    
+    x "Oh, course! I mean, we're only teenagers."
+    
+    l "Right..."
+    
+    "You liked being with him."
+    
+    "Mysteriously absent were the phrases \"I like you.\""
+Resetting cache.
+
+File "game/script.rpy", line 615: expected statement.
+(Perhaps you left out a " at the end of the first line.)
+    but before you can react, the knife stabs into your hand."
+                            ^
+    
+    scene bg blue blood
+    with vpunch
+    
+    "You scream out in pain, and blue and red blood mixes and shoots from the wound, covering your arm."
+    
+    e "GET THE FUCK AWAY FROM ME!! YOU FUCKING CREEP!! I'LL CALL THE FUCKING POLICE IF YOU DON'T GET OUT OF HERE RIGHT NOW."
+    
+    "You run, run as fast as you can, not worrying about the fact you had left your phone and keys in your jacket, running, running, running..."
+    
+    scene bg
+    
+    m "It's over..."
+    
+    m "Eventually one of my friends found me bleeding out... They called the hospital. I was fine... but..."
+    
+    g "I'm sorry."
+    
+    m "... who are you, why are you making me do this?"
+    
+    g "I'm not making you do anything Layla."
+    
+    m "Right..."
+    
+    g "Are there any others?"
+    
+    m "Happier memories... maybe."
+    
+    $ doneEnemy = True
+    
+    jump stories
+    
+    
+    label ex:
+    
+    show you at center
+    
+    m "Oh... do you mean him? My first partner?"
+    
+    m "He was... nice, I suppose."
+    
+    g "You suppose?"
+    
+    m "Well... there was nothing... wrong with him..."
+    
+    "Stone pillars erect around you, turning into walls not a foot away from you. A couch forms under you, and you fall onto it, where a boy wraps his arms around you."
+    
+    x "You're so cute Layla..."
+    
+    l "Nooo!"
+    
+    x "Yes you arrre."
+    
+    "He pecks you on your cheek. You try to ignore the sandpaper of his facial hair pressing against you."
+    
+    l "I... love you."
+    
+    x "What's with the hesitation?"
+    
+    "You close your eyes and think for a moment. The words you want to say feel tangled, they don't want to leave your throat."
+    
+    l "I suppose... Maybe I just don't understand love... Like, I don't think I'd give anything for you or anything like that... I suppose.When I say it... I just mean I like being with you, and I wanna stay with you, you know?"
+    
+    x "Oh, course! I mean, we're only teenagers."
+    
+    l "Right..."
+    
+    "You liked being with him."
+    
+    "Mysteriously absent were the phrases \"I like you.\""
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+
+Full traceback:
+  File "game/script.rpy", line 417, in script
+    if outLength > howLong.MIDDLE:
+  File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/ast.py", line 1832, in execute
+    if renpy.python.py_eval(condition):
+  File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/python.py", line 2059, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/python.py", line 2052, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/script.rpy", line 417, in <module>
+    if outLength > howLong.MIDDLE:
+NameError: name 'howLong' is not defined
+
+While running game code:
+  File "game/script.rpy", line 417, in script
+    if outLength > howLong.MIDDLE:
+  File "game/script.rpy", line 417, in <module>
+    if outLength > howLong.MIDDLE:
+NameError: name 'howLong' is not defined
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+
+File "game/script.rpy", line 9: is not terminated with a newline. (Check strings and parenthesis.)
+    define s = Character(_("Skye"), color="#ffb3cb"
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+Resetting cache.
+
+File "game/script.rpy", line 423: is not terminated with a newline. (Check strings and parenthesis.)
+(Perhaps you left out a " at the end of the first line.)
+          l "But anyway, yeah. It's no problem.
+Resetting cache.
+Resetting cache.

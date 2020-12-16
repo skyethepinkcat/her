@@ -2,9 +2,11 @@
 define g = Character(_("A Voice"), color="c8ffc8")
 define m = Character(_("You"), color="#ffabe9")
 define l = Character(_("Layla"), color="#ffabe9")
-define v = Character(_("Val"), color="#cb59ff")
+define v = Character(_("Sweetheart"), color="#cb59ff")
 define f = Character(_("Friend"), color="#ffbb6f")
 define e = Character(_("Enemy"), color="#60bbff")
+define x = Character(_("Ex"), color="#b20100")
+define s = Character(_("Skye"), color="#ffb3cb")
 python:
   from enum import Enum
 
@@ -153,6 +155,8 @@ menu:
   "My Ex" if not doneEx:
     jump ex
 
+jump end
+
 label friend:
 
   m "Do you mean... my best friend?"
@@ -209,7 +213,7 @@ label friend:
       show friend at left
       with move
 
-      "She grabs your hands excitedly, and your heart beat just a little faster."
+      "She grabs your hands excitedly, and your heart beats just a little faster."
 
       f "That's amazing! Oh my god! I'm so happy you told me! Do you have a name figured out?"
 
@@ -309,6 +313,8 @@ label sweet:
 
     g "Val, she likes to be called."
 
+    define v = Character(_("Val"), color="#cb59ff")
+
     g "So... what do you remember?"
 
   else:
@@ -319,21 +325,25 @@ label sweet:
 
     m "Val... I think her name was Val?"
 
+    define v = Character(_("Val"), color="#cb59ff")
+
     g "Go on..."
 
     $ length = ["error", "error"]
 
   if tooWellKept:
 
+    show sweet short at right
+
     $ length = ["short", "neck"]
 
   else:
 
+    show sweet at right
+
     $ length = ["long", "waist"]
 
   "Around you, the white void begins to shape itself, color itself around you into something clearer. Street paths fade onto the ground, and a cloudy grass begins to emerge. In front of you, Val."
-
-  show val at right
 
   "You know it's her before her features appear. Her [length[0]] golden hair is the first, slowly appearing on a blank head and falling to to her [length[1]]."
 
@@ -407,8 +417,12 @@ label sweet:
 
           "[You've {b}been out for a while{/b}.]"
 
-          if outLength > howLong.MIDDLE:
-            $ outLength = howLong.MIDDLE
+          if outLength > 2:
+            $ outLength = 2
+
+      l "But anyway, yeah. It's no problem."
+
+      v "Thanks so much!"
 
 $ doneSweet = True
 
@@ -426,15 +440,23 @@ scene bg corrupt
 
 "It forms itself into shapes - a bar. {i}She{/i} leaned close to you from the seat, her flaming blue hair impossible to mistake."
 
-show you at left
+show you at center
+
+show me at center
 
 show enemy at right
 
 e "Hey there cutie~"
 
+show enemy at center
+with move
+
 "Her voice was slick as oil, as she moved herself closer to you, she passed a glass of a bright blue liquid."
 
 e "Drink up, sweetheart. <3"
+
+show me at left
+with move
 
 m "NO."
 
@@ -447,6 +469,9 @@ g "I'm sorry, but I can't stop it. I'm just an outside observer. This is all you
 m "Please... please..."
 
 g "I'm sorry."
+
+show me at center
+with move
 
 l "S-sure, I'll take a sip."
 
@@ -463,7 +488,13 @@ l "Eh?"
 $ notDoneLoop = True
 
 while notDoneLoop:
+  show me at center
+  with move
+
+  show enemy at center
+
   menu:
+
 
     e "You here for anything more than celebrating sweetheart?"
 
@@ -483,6 +514,9 @@ while notDoneLoop:
 
     "Try to get out":
 
+      show me at left
+      with move
+
       m "I'm taken, actually."
 
       g "..."
@@ -492,6 +526,9 @@ while notDoneLoop:
       "Your attempt to force your way out of the situation fails, and before you know it everything rewinds..."
 
     "NO":
+
+      show me at left
+      with move
 
       m "NO. NO. NO. NO. NO."
 
@@ -505,11 +542,22 @@ $ e = Character(_("Max"), color="#60bbff")
 
 e "It's Max. So, what do you study?"
 
+show me at left
+
 m "JUST GET IT OVER WITH."
 
 m "I KNOW WHAT YOU WANT TO SHOW ME. JUST. JUST. JUST... just get to that part..."
 
+scene bg corrupt
+
+show you at center
+
+show enemy at right
+
 "The surrondings shift to Max's bedroom. Everything is stained with the same repulsive blue. She lays on her bed, beckoning you over. You dutifully follow, after which she plants a kiss on your cheek."
+
+show enemy at center
+with move
 
 e "Soo cutie, how are you feeling?"
 
@@ -518,18 +566,33 @@ l "Ah... I'm feeling... good..."
 e "Mmm, yeah?"
 
 scene bg blood
+show enemy at center
+show you at center
+with vpunch
 
 "Her fangs bite into your neck, bright red blood spilling from it and painting the canvas of your surrondings."
 
 l "Yeah... haha."
 
-e "Well? Why don't you take off someone of your clothes then cutie?"
+e "Well? Why don't you take off some of your clothes then cutie?"
 
 l "Hehe... I'd be glad to..."
+
+show enemy at right
+show you at right
+with move
 
 "You begin to climb into her bed, slowly taking off your clothes, when-"
 
 e "EXCUSE ME."
+
+scene bg blood
+show you at right
+show enemy at right
+with hpunch
+
+show you at left
+with move
 
 "Max pushes you off the bed, not playfully, but hard, paniced, you fall to the ground with a crash."
 
@@ -551,13 +614,32 @@ e "NOW GET OUT OF MY FUCKING HOUSE."
 
 l "I-I'm sorry, let me just grab my jacket and I'll leave I promise, I promise."
 
-"You reach up to grab your jacket from her bed, but before you can react, the knife stabs into your hand."
+"You reach up to grab your jacket from her bed."
+
+show you at center
+with move
+
+"You try to stay away as far away from her as possible, but she's sitting on your jacket. As you grab it-"
+
+show enemy at center
+with move
+
+"before you can react, the knife stabs into your hand."
 
 scene bg blue blood
+show you at center
+show enemy at center
+with vpunch
 
 "You scream out in pain, and blue and red blood mixes and shoots from the wound, covering your arm."
 
+show enemy at right
+with move
+
 e "GET THE FUCK AWAY FROM ME!! YOU FUCKING CREEP!! I'LL CALL THE FUCKING POLICE IF YOU DON'T GET OUT OF HERE RIGHT NOW."
+
+hide you
+with moveoutleft
 
 "You run, run as fast as you can, not worrying about the fact you had left your phone and keys in your jacket, running, running, running..."
 
@@ -586,13 +668,138 @@ jump stories
 
 label ex:
 
+show you at center
+
 m "Oh... do you mean him? My first partner?"
+
+m "He was... nice, I suppose."
+
+g "You suppose?"
+
+m "Well... there was nothing... wrong with him..."
+
+"Stone pillars erect around you, turning into walls not a foot away from you. A couch forms under you, and you fall onto it, where a boy wraps his arms around you."
+
+show ex at center behind you
+with dissolve
+
+x "You're so cute Layla..."
+
+l "Nooo!"
+
+x "Yes you arrre."
+
+"He pecks you on your cheek. You try to ignore the sandpaper of his facial hair pressing against you."
+
+l "I... love you."
+
+x "What's with the hesitation?"
+
+"You close your eyes and think for a moment. The words you want to say feel tangled, they don't want to leave your throat."
+
+show you at left
+show ex at right
+with move
+
+l "I suppose... Maybe I just don't understand love... Like, I don't think I'd give anything for you or anything like that... I suppose.When I say it... I just mean I like being with you, and I wanna stay with you, you know?"
+
+x "Oh, course! I mean, we're only teenagers."
+
+l "Right..."
+
+"You liked being with him."
+
+"Mysteriously absent were the phrases \"I like you.\""
+
+"Well, perhaps not so mysterious."
+
+scene bg
+
+show you at left
+with dissolve
+
+"You got up, and the pillars rescinded."
+
+# if stillFriends = True:
+"Your best friend appeared in front of you, looking at her phone."
+
+show friend at right
+
+f "So? What did you want to talk to me about?"
+
+"You looked at a phone which had materialized in your hand, with the words your friend had spoken open in the text message app."
+
+l "I-I don't really understand my feelings for him."
+
+f "What do you mean? You seem so lovey-dovey at school lol."
+
+l ">///< Yeah, but... idk it's hard to explain."
+
+f "I got time girl!"
+
+l "Well... I like being lovey-dovey and stuff... and I... I {i}really{/i} like being his girlfriend, I guess, but..."
+
+f "?"
+
+l "I don't particularly like being {i}his{/i} girlfriend... I guess?"
+
+f "Hmm... what do you mean?"
+
+l "It's like... I like being someone's girlfriend, I like being called their girlfriend, and I like being held like their girlfriend and treated like one and all that but... I don't really like {i}him,{/i} I don't think. I mean, I guess there are bits and pieces but... He's just..."
+
+f "He can be a lot yeah, lol."
+
+l "Nono, not like that... More like... I like him fine as a friend... but I don't really feel attracted to him, honestly."
+
+f "So you've fallen out of love? I think that's pretty normal."
+
+l "Ehh, it's not really that even. It's like... I'm not sure I was ever attracted to him, honestly."
+
+f "Girl, maybe you're just a lesbian?"
+
+l "HUH"
+
+f "I mean... just sayin'."
+
+l "WHY DIDN'T I THINK OF THAT"
+
+f "I dunno!! lol"
+
+"With that, the memory faded. The phone slipped from your grasp and fell to the floor, fading away before it managed to hit the ground."
+
+g "And that was it?"
+
+m "And that was it."
+
+m "Well, I actually broke up with him later, but... yeah."
+
+m "He didn't do anything wrong but..."
+
+m "Well, the whole situation wasn't right, I suppose."
 
 $ doneEx = True
 
 jump stories
 
+label end:
 
+m "Thats... well that's all I can remember honestly..."
+
+g "Thank you."
+
+m "So... what happens next?"
+
+g "That's up to you."
+
+g "This isn't your only life. You've lived many... all with slightly different choices and events."
+
+g "So, if you're curious, you could try playing again."
+
+s "Thank you for playing!"
+
+s "This was just a work in progress, a proof of concept really. But I hope you enjoyed what you played!"
+
+s "I'd like to make it longer with more routes and different intersecting character details... keep an eye on https://github.com/skyejonke/her/ for updates (if I'm ever not lazy)!"
 
 # Old
 

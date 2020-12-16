@@ -1,28 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 171, in script
-    if $ outLength  == 3:
-  File "game/script.rpy", line 171, in <module>
-    if $ outLength  == 3:
-NameError: name 'outLength' is not defined
+  File "game/script.rpy", line 417, in script
+    if outLength > howLong.MIDDLE:
+  File "game/script.rpy", line 417, in <module>
+    if outLength > howLong.MIDDLE:
+NameError: name 'howLong' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 171, in script
-    if $ outLength  == 3:
+  File "game/script.rpy", line 417, in script
+    if outLength > howLong.MIDDLE:
   File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/ast.py", line 1832, in execute
     if renpy.python.py_eval(condition):
   File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/python.py", line 2059, in py_eval
     return py_eval_bytecode(code, globals, locals)
   File "/home/skye/Downloads/renpy-7.3.5-sdk/renpy/python.py", line 2052, in py_eval_bytecode
     return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 171, in <module>
-    if $ outLength  == 3:
-NameError: name 'outLength' is not defined
+  File "game/script.rpy", line 417, in <module>
+    if outLength > howLong.MIDDLE:
+NameError: name 'howLong' is not defined
 
 Linux-5.6.19-159.current-x86_64-with-glibc2.2.5
 Ren'Py 7.3.5.606
 Her Ren'Py 7 Edition
-Sat Dec 12 16:17:59 2020
+Tue Dec 15 19:45:25 2020

@@ -29,22 +29,18 @@ define config.version = _("Ren'Py 7 Edition")
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.
 
-define gui.about = _("""Character Art: Deji.
-Original Character Art: derik.
+define gui.about = _("""Character Art: Emmett/Charlie Jonke`
 
-Background Art: Mugenjohncel.
-Original Background Art: DaFool
+Written By: Skye Jonke
 
-Music By: Alessio
-
-Written By: mikey""")
+Read By: You!""")
 
 
 ## A short name for the game used for executables and directories in the built
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "the_question"
+define build.name = "her"
 
 ## Change the version used by the build system.
 define build.version = "7.0"
@@ -146,7 +142,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "the_question-7"
+define config.save_directory = "her-7"
 
 
 ## Icon ########################################################################
@@ -208,4 +204,4 @@ init python:
 ## The username and project name associated with an itch.io project, separated
 ## by a slash.
 
-define build.itch_project = "renpytom/the-question"
+# define build.itch_project = "skyenet/her"
